@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const DESTINO = "bazan0897@gmail.com";
+const DESTINO = "sbazan@fie.undef.edu.ar";
 
 interface DatosConsulta {
   nombre?: string;

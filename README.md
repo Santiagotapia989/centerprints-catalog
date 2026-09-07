@@ -47,7 +47,7 @@ Todos los datos de contacto se centralizan en `src/data/site.ts`:
 
 ## Formulario de contacto — Resend
 
-El formulario del frontend (`src/components/ContactSection.tsx`) hace un `POST` a `/api/contacto`. La API Route lee los datos, los valida y envía un email con **Resend** al destinatario configurado (por defecto `bazan0897@gmail.com`).
+El formulario del frontend (`src/components/ContactSection.tsx`) hace un `POST` a `/api/contacto`. La API Route lee los datos, los valida y envía un email con **Resend** al destinatario configurado (por defecto `sbazan@fie.undef.edu.ar`).
 
 ### Variables de entorno
 
