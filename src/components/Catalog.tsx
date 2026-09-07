@@ -47,7 +47,7 @@ export default function Catalog() {
           {catalogo.categorias.map((categoria) => {
             const Icono = iconos[categoria.icono] ?? FileText;
             return (
-              <div key={categoria.id}>
+              <div key={categoria.id} id={categoria.id}>
                 <div className="flex flex-wrap items-end justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-accent-500/15 to-accent-600/15 ring-1 ring-accent-500/25">

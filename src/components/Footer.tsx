@@ -64,13 +64,27 @@ export default function Footer() {
               Categorías
             </h4>
             <ul className="mt-4 space-y-3 text-sm text-white/80">
-              <li>Papelería y Resmas</li>
-              <li>Escritura y Marcadores</li>
-              <li>Agendas y Cuadernos</li>
-              <li>Formularios y Archivo</li>
-              <li>Higiene y Limpieza</li>
-              <li>Escolar</li>
-              <li>Herramientas de Oficina</li>
+              <li>
+                <a href="#papeleria" className="transition-colors hover:text-white hover:underline">Papelería y Resmas</a>
+              </li>
+              <li>
+                <a href="#escritura" className="transition-colors hover:text-white hover:underline">Escritura y Marcadores</a>
+              </li>
+              <li>
+                <a href="#agendas" className="transition-colors hover:text-white hover:underline">Agendas y Cuadernos</a>
+              </li>
+              <li>
+                <a href="#archivo" className="transition-colors hover:text-white hover:underline">Formularios y Archivo</a>
+              </li>
+              <li>
+                <a href="#higiene" className="transition-colors hover:text-white hover:underline">Higiene y Limpieza</a>
+              </li>
+              <li>
+                <a href="#escolar" className="transition-colors hover:text-white hover:underline">Escolar</a>
+              </li>
+              <li>
+                <a href="#oficina" className="transition-colors hover:text-white hover:underline">Herramientas de Oficina</a>
+              </li>
             </ul>
           </div>
         </div>
