@@ -1,0 +1,396 @@
+{
+  "categorias": [
+    {
+      "id": "papeleria",
+      "titulo": "Papelería y Resmas",
+      "descripcion": "Resmas y papeles de primeras marcas para la operación diaria de tu empresa.",
+      "icono": "file",
+      "productos": [
+        {
+          "id": "chamex-75g-a4",
+          "marca": "Chamex",
+          "nombre": "Papel Chamex 75g A4",
+          "especificaciones": "75 g · A4 · Fotocopia, láser e inkjet",
+          "imagen": "/images/products/chamex-75g-a4.png"
+        },
+        {
+          "id": "resma-color-75",
+          "marca": "Color",
+          "nombre": "Resma Color 75g",
+          "especificaciones": "75 g · A4 · Colores surtidos",
+          "imagen": "/images/products/resma-color-75.png"
+        },
+        {
+          "id": "ledesma-autor-80g-a4",
+          "marca": "Ledesma",
+          "nombre": "Papel Autor 80g A4",
+          "especificaciones": "80 g · A4 · Impresión general",
+          "imagen": "/images/products/ledesma-autor-80g-a4.png"
+        }
+      ]
+    },
+    {
+      "id": "escritura",
+      "titulo": "Escritura y Marcadores",
+      "descripcion": "Marcadores, resaltadores, rollers, correctores y etiquetas para todo tipo de uso.",
+      "icono": "pen",
+      "productos": [
+        {
+          "id": "pelikan-720",
+          "marca": "Pelikan",
+          "nombre": "Marcador al agua Pelikan 720",
+          "especificaciones": "Al agua · Punta fina · Unidad",
+          "imagen": "/images/products/pelikan-720.png"
+        },
+        {
+          "id": "edding-1200",
+          "marca": "Edding",
+          "nombre": "Marcador al agua Edding 1200",
+          "especificaciones": "Al agua · Punta fina · 30 colores",
+          "imagen": "/images/products/edding-1200.png"
+        },
+        {
+          "id": "schneider-job",
+          "marca": "Schneider",
+          "nombre": "Resaltadores Schneider Job",
+          "especificaciones": "Resaltador · Para papel e impresiones",
+          "imagen": "/images/products/schneider-job.png"
+        },
+        {
+          "id": "simball-genio-plus-fancy",
+          "marca": "Simball",
+          "nombre": "Rollers Simball Genio Plus / Fancy",
+          "especificaciones": "Tinta gel · Cuerpos clásicos y decorados",
+          "imagen": "/images/products/simball-genio-plus-fancy.png"
+        },
+        {
+          "id": "giotto-turbo-maxi",
+          "marca": "Giotto",
+          "nombre": "Marcadores Giotto Turbo Color / Maxi",
+          "especificaciones": "Punta fina y gruesa · Colores surtidos",
+          "imagen": "/images/products/giotto-turbo-maxi.png"
+        },
+        {
+          "id": "deli-sketch",
+          "marca": "Deli",
+          "nombre": "Marcadores Deli Sketch",
+          "especificaciones": "Doble punta · Set profesional",
+          "imagen": "/images/products/deli-sketch.jpeg"
+        },
+        {
+          "id": "corrector-cinta-paper-mate",
+          "marca": "Paper Mate",
+          "nombre": "Corrector en cinta Paper Mate Liquid Paper",
+          "especificaciones": "Cinta 5 mm × 6 m · Secado instantáneo",
+          "imagen": "/images/products/corrector-cinta-paper-mate.png"
+        },
+        {
+          "id": "corrector-cinta-filgo",
+          "marca": "Filgo",
+          "nombre": "Corrector en Cinta Filgo (Correct Line 6m x 5mm)",
+          "especificaciones": "Cinta 5 mm × 6 m · Secado instantáneo",
+          "imagen": "/images/products/corrector-cinta-filgo.png"
+        },
+        {
+          "id": "lapiz-infinito-simball",
+          "marca": "Simball",
+          "nombre": "Lápiz infinito Simball",
+          "especificaciones": "Escribe años · Repuestos disponibles",
+          "imagen": "/images/products/lapiz-infinito-simball.png"
+        },
+        {
+          "id": "etiquetas-autoadhesivas",
+          "marca": "Múltiples",
+          "nombre": "Etiquetas autoadhesivas",
+          "especificaciones": "A4 · Láser e inkjet · Varios gramajes",
+          "imagen": "/images/products/etiquetas-autoadhesivas.png"
+        },
+        {
+          "id": "marcadores-420-plus",
+          "marca": "Color Box",
+          "nombre": "Marcadores 420 Plus · 20 colores",
+          "especificaciones": "Punta fina · Estuche × 20",
+          "imagen": "/images/products/marcadores-420-plus.png"
+        }
+      ]
+    },
+    {
+      "id": "agendas",
+      "titulo": "Agendas y Cuadernos (Nivel 10)",
+      "descripcion": "Agendas ejecutivas y de bolsillo para la organización de tu negocio.",
+      "icono": "book",
+      "productos": [
+        {
+          "id": "agenda-bonjour-cuero-negro-3601",
+          "marca": "Bonjour",
+          "nombre": "Agenda Bonjour Cuero Negro Diaria",
+          "especificaciones": "Modelo 3601 · 16 × 22 cm · Tapa de cuero negra",
+          "imagen": "/images/products/agenda-bonjour-cuero-negro-3601.png"
+        },
+        {
+          "id": "agenda-no8-plastica-3422",
+          "marca": "Nivel 10",
+          "nombre": "Agenda N.º 8 Plástica c/ Abrojo",
+          "especificaciones": "Modelo 3422 · 16 × 22 cm · Tapa plástica · Cierre con abrojo",
+          "imagen": "/images/products/agenda-no8-plastica-3422.png"
+        },
+        {
+          "id": "agenda-power-3153",
+          "marca": "Nivel 10",
+          "nombre": "Agenda Nivel 10 Power 16×8",
+          "especificaciones": "Modelo 3153 · 16 × 8 cm · Power Frases",
+          "imagen": "/images/products/agenda-power-3153.png"
+        },
+        {
+          "id": "agenda-no8-cuero-color-3404",
+          "marca": "Nivel 10",
+          "nombre": "Agenda N.º 8 Cuero Color 16×22",
+          "especificaciones": "Modelos 3404 / 3604 · Cuero color",
+          "imagen": "/images/products/agenda-no8-cuero-color-3404.png"
+        },
+        {
+          "id": "agenda-nivel10-diaria",
+          "marca": "Nivel 10",
+          "nombre": "Agenda Nivel 10 Diaria",
+          "especificaciones": "Planificación diaria · Tapa forrada",
+          "imagen": "/images/products/agenda-nivel10-diaria.png"
+        }
+      ]
+    },
+    {
+      "id": "archivo",
+      "titulo": "Formularios de Aduana y Archivo",
+      "descripcion": "Carpetas S.I.M., carpetas y cajas de fibra para guardar documentos.",
+      "icono": "archive",
+      "productos": [
+        {
+          "id": "carpeta-sim-om744",
+          "marca": "S.I.M.",
+          "nombre": "Carpeta S.I.M. OM 744",
+          "especificaciones": "Importación · Uso aduanero",
+          "imagen": "/images/products/carpeta-sim-om744.png"
+        },
+        {
+          "id": "carpetas-fibra-negra",
+          "marca": "Fibra",
+          "nombre": "Carpetas de fibra negra",
+          "especificaciones": "Archivo · Tapa y lomo en fibra",
+          "imagen": "/images/products/carpetas-fibra-negra.png"
+        },
+        {
+          "id": "cajas-fibra-negra",
+          "marca": "Fibra",
+          "nombre": "Cajas de fibra negra",
+          "especificaciones": "Reforzadas · Varios tamaños",
+          "imagen": "/images/products/cajas-fibra-negra.png"
+        }
+      ]
+    },
+    {
+      "id": "higiene",
+      "titulo": "Higiene y Limpieza",
+      "descripcion": "Papel higiénico, rollos de cocina, toallas y servilletas para tu comercio.",
+      "icono": "sparkles",
+      "productos": [
+        {
+          "id": "elegante-linea",
+          "marca": "Elegante",
+          "nombre": "Pack Higiene Comercial – Combo de Elegante",
+          "especificaciones": "Papel higiénico bolsón × 8 · Rollo de cocina × 50 paños",
+          "imagen": "/images/products/elegante-linea.png"
+        },
+        {
+          "id": "felpita-linea",
+          "marca": "Felpita",
+          "nombre": "Pack Higiene Comercial – Combo de Felpita",
+          "especificaciones": "PH premium · Cocina × 200 · Toallas intercaladas × 2500 · Servilletas × 70",
+          "imagen": "/images/products/felpita-linea.png"
+        }
+      ]
+    },
+    {
+      "id": "escolar",
+      "titulo": "Escolar",
+      "descripcion": "Tizas, transportadores, tijeras y elementos para la vuelta al colegio.",
+      "icono": "brush",
+      "productos": [
+        {
+          "id": "tiza-pizarra",
+          "marca": "Escolar",
+          "nombre": "Tizas para pizarra",
+          "especificaciones": "Blancas y de colores · Caja",
+          "imagen": "/images/products/tiza-pizarra.png"
+        },
+        {
+          "id": "transportador-pizzini",
+          "marca": "Pizzini",
+          "nombre": "Transportador Pizzini",
+          "especificaciones": "30 cm · Plástico",
+          "imagen": "/images/products/transportador-pizzini.png"
+        },
+        {
+          "id": "tijera-maped",
+          "marca": "Maped",
+          "nombre": "Tijera Maped Essentials",
+          "especificaciones": "Punta redonda · Uso escolar",
+          "imagen": "/images/products/tijera-maped.png"
+        },
+        {
+          "id": "palitos-helado",
+          "marca": "Escolar",
+          "nombre": "Palitos de helado",
+          "especificaciones": "Madera · Manualidades",
+          "imagen": "/images/products/palitos-helado.png"
+        },
+        {
+          "id": "sacapuntas-plastico",
+          "marca": "Escolar",
+          "nombre": "Sacapuntas de Plástico / Varios Colores",
+          "especificaciones": "Plástico · Varios colores",
+          "imagen": "/images/products/sacapuntas-plastico.png"
+        },
+        {
+          "id": "adhesivo-plasticola",
+          "marca": "Plasticola",
+          "nombre": "Adhesivo Color Plasticola (35g - Varios Colores)",
+          "especificaciones": "35 g · Varios colores · Uso escolar y oficina",
+          "imagen": "/images/products/adhesivo-plasticola.png"
+        }
+      ]
+    },
+    {
+      "id": "oficina",
+      "titulo": "Herramientas de Oficina y Tecnología",
+      "descripcion": "Cintas, abrochadoras, hilado, mouses, calculadoras y accesorios para tu escritorio.",
+      "icono": "wrench",
+      "productos": [
+        {
+          "id": "cinta-empaque-rami",
+          "marca": "Rami",
+          "nombre": "Cinta de empaque Rami",
+          "especificaciones": "Transparente · Alta adherencia · Varios anchos",
+          "imagen": "/images/products/cinta-empaque-rami.png"
+        },
+        {
+          "id": "abrochadora-metalica",
+          "marca": "Oficina",
+          "nombre": "Abrochadora metálica",
+          "especificaciones": "Metálica · Uso pesado",
+          "imagen": "/images/products/abrochadora-metalica.png"
+        },
+        {
+          "id": "sacabroches-sifap",
+          "marca": "Sifap",
+          "nombre": "Sacabroches Sifap",
+          "especificaciones": "Colores surtidos",
+          "imagen": "/images/products/sacabroches-sifap.png"
+        },
+        {
+          "id": "hilo-algodon-choricero",
+          "marca": "Oficina",
+          "nombre": "Hilo de algodón choricero",
+          "especificaciones": "Ovillo × 30 g · Algodón",
+          "imagen": "/images/products/hilo-algodon-choricero.png"
+        },
+        {
+          "id": "hilo-plastico-recuperado",
+          "marca": "Oficina",
+          "nombre": "Hilo plástico recuperado",
+          "especificaciones": "Para atado y papelería en general",
+          "imagen": "/images/products/hilo-plastico-recuperado.jpeg"
+        },
+        {
+          "id": "mouse-genius-netscroll-120",
+          "marca": "Genius",
+          "nombre": "Mouse óptico Genius Netscroll 120",
+          "especificaciones": "Óptico · PS/2",
+          "imagen": "/images/products/mouse-genius-netscroll-120.png"
+        },
+        {
+          "id": "mouse-gtc-mig-122",
+          "marca": "GTC",
+          "nombre": "Mouse inalámbrico GTC MIG-122",
+          "especificaciones": "Inalámbrico · 2.4 GHz · Colores pastel",
+          "imagen": "/images/products/mouse-gtc-mig-122.png"
+        },
+        {
+          "id": "calculadora-casio-ms-20uc",
+          "marca": "Casio",
+          "nombre": "Calculadora Casio MS-20UC",
+          "especificaciones": "12 dígitos · Solar y batería",
+          "imagen": "/images/products/calculadora-casio-ms-20uc.png"
+        },
+        {
+          "id": "contadora-billetes",
+          "marca": "Oficina",
+          "nombre": "Contadora de billetes",
+          "especificaciones": "Verificación de autenticidad · Conteo rápido",
+          "imagen": "/images/products/contadora-billetes.png"
+        },
+        {
+          "id": "porta-taco-malla",
+          "marca": "VALUES",
+          "nombre": "Porta taco de malla metálica",
+          "especificaciones": "Malla metálica · Escritorio",
+          "imagen": "/images/products/porta-taco-malla.png"
+        },
+        {
+          "id": "porta-lapiz-malla",
+          "marca": "VALUES",
+          "nombre": "Porta lápiz de malla metálica",
+          "especificaciones": "Malla metálica · Escritorio",
+          "imagen": "/images/products/porta-lapiz-malla.png"
+        },
+        {
+          "id": "pendrives-kingston",
+          "marca": "Kingston",
+          "nombre": "Pendrives Kingston 3.2 DTX",
+          "especificaciones": "32 a 256 GB · USB 3.2",
+          "imagen": "/images/products/pendrives-kingston.png"
+        },
+        {
+          "id": "almohadillas-sellos-sta",
+          "marca": "STA",
+          "nombre": "Almohadillas para sellos STA",
+          "especificaciones": "Tintas de reposición · Varios colores",
+          "imagen": "/images/products/almohadillas-sellos-sta.png"
+        },
+        {
+          "id": "sellos-personalizados",
+          "marca": "A medida",
+          "nombre": "Sellos personalizados",
+          "especificaciones": "Fabricación en 24 hs",
+          "imagen": "/images/products/sellos-personalizados.jpeg"
+        },
+        {
+          "id": "pistola-encoladora-hx100",
+          "marca": "Oficina",
+          "nombre": "Pistola encoladora HX-100",
+          "especificaciones": "10 mm · Silicona caliente",
+          "imagen": "/images/products/pistola-encoladora-hx100.jpeg"
+        },
+        {
+          "id": "papeles-especiales",
+          "marca": "Especiales",
+          "nombre": "Papeles especiales",
+          "especificaciones": "Celofán · Crepé Luma · Afiche · Araña y barrilete",
+          "imagen": "/images/products/papeles-especiales.jpeg"
+        },
+        {
+          "id": "carpeta-tres-solapas-aduana",
+          "marca": "Aduanera",
+          "nombre": "Carpeta tres solapas aduanera",
+          "especificaciones": "Tres solapas · Uso aduanero",
+          "imagen": "/images/products/carpeta-tres-solapas-aduana.jpeg"
+        },
+        {
+          "id": "identificadores",
+          "marca": "Oficina",
+          "nombre": "Identificadores de plástico",
+          "especificaciones": "Varios modelos y colores",
+          "imagen": "/images/products/identificadores.jpeg"
+        }
+      ]
+    }
+  ]
+}
