@@ -9,13 +9,12 @@ Incluye:
 - Catálogo dinámico con carruseles deslizables por categoría, alimentado por `src/data/products.json`.
 - Botón "Consultar por WhatsApp" por producto con mensaje precargado.
 - Mapa interactivo de Google Maps (Av. Rivadavia 938, CABA).
-- Formulario de contacto/presupuesto que envía un `POST` al webhook de n8n.
-- Flujo de n8n exportado (`n8n/workflows/centerprint-webhook.json`) para recibir consultas, notificar por email y registrarlas en PostgreSQL.
+- Formulario de contacto/presupuesto que envía un `POST` a `/api/contacto`, el cual dispara un email vía **Resend** (`src/app/api/contacto/route.ts`).
 
 ## Requisitos
 
 - **Node.js 20+** (probado con Node 24) y npm.
-- Para el formulario: **n8n** corriendo en local. *(El sitio funciona igual sin n8n; solo verás el aviso de error en el formulario.)*
+- Una cuenta en [Resend](https://resend.com) con una **API key**.
 
 ## Puesta en marcha desde PowerShell
 
@@ -35,7 +34,6 @@ Todos los datos de contacto se centralizan en `src/data/site.ts`:
 | Constante | Descripción |
 | --- | --- |
 | `whatsappNumero` | Numero de WhatsApp con código de país, ej. `"54911xxxxxxxx"`. Sin el `+`. |
-| `webhookUrl` | URL del webhook de n8n (`http://localhost:5678/webhook/contacto`). |
 | `heroImagen` | URL de la imagen de fondo del Hero. |
 
 > **Importante:** reemplazá `whatsappNumero` por el número real para que los botones de WhatsApp funcionen.
@@ -47,64 +45,37 @@ Todos los datos de contacto se centralizan en `src/data/site.ts`:
 - El logo va en `public/logo.png` y el favicon en `public/icono.png` (referenciados desde `src/components/Logo.tsx` y `src/app/layout.tsx`).
 - Para regenerar solo los placeholders: `npm run generate:images`.
 
-## Integración con n8n
+## Formulario de contacto — Resend
 
-### Paso 1 — Levantar n8n en local
+El formulario del frontend (`src/components/ContactSection.tsx`) hace un `POST` a `/api/contacto`. La API Route lee los datos, los valida y envía un email con **Resend** al destinatario configurado (por defecto `bazan0897@gmail.com`).
+
+### Variables de entorno
+
+Creá un archivo `.env.local` en la raíz del proyecto:
+
+```env
+RESEND_API_KEY=re_xxxxxxxxxxxx
+EMAIL_FROM=onboarding@resend.dev
+```
+
+| Variable | Descripción |
+| --- | --- |
+| `RESEND_API_KEY` | **Obligatoria.** API key generada en el dashboard de Resend (Settings → API Keys). |
+| `EMAIL_FROM` | Remitente del email. En modo prueba usá `onboarding@resend.dev`. Con un dominio verificado usá algo como `consultas@tudominio.com.ar`. |
+
+En **Vercel**: Project → Settings → Environment Variables, agregá ambas variables (para Production, Preview y Development).
+
+> **Importante:** con `onboarding@resend.dev` los emails solo pueden llegar a la dirección con la que creaste la cuenta de Resend. Para enviar a otros destinatarios y que tenga pinta profesional tenés que verificar tu dominio en Resend y cambiar `EMAIL_FROM`.
+
+### Probar el envío
+
+Con el servidor de desarrollo activo, desde PowerShell:
 
 ```powershell
-npx n8n start
+Invoke-RestMethod -Method POST -Uri "http://localhost:3000/api/contacto" -ContentType "application/json" -Body '{"nombre":"Juan Pérez","email":"juan@test.com","telefono":"11 1234 5678","producto":"Resma Ledesma Autor 80g A4","mensaje":"Hola, quisiera un presupuesto."}'
 ```
 
-Esto inicia la interfaz de n8n en **http://localhost:5678**.
-
-### Paso 2 — Importar el flujo
-
-1. En n8n, andá a **Workflows** → botón de tres puntos → **Import from File**.
-2. Seleccioná `n8n/workflows/centerprint-webhook.json`.
-3. Configurá las credenciales que pide el flujo:
-   - **Notificar por Email** → credencial **SMTP** (servidor, usuario y contraseña de correo).
-   - **Registrar en PostgreSQL** → credencial **Postgres** con los datos de tu base.
-4. Activá el flujo desde el toggle **Active** (por defecto viene desactivado para que no reciba solicitudes antes de tiempo).
-
-El flujo:
-
-1. **Webhook Contacto** recibe el `POST` en `http://localhost:5678/webhook/contacto`.
-2. **Formatear datos del cliente** ordena nombre, empresa, email, producto de interés, etc.
-3. **Notificar por Email** envía un correo con los datos formateados.
-4. **Registrar en PostgreSQL** inserta la consulta en la tabla `contactos`.
-
-### Base de datos (opcional pero recomendada)
-
-Ejecutá la siguiente tabla en tu PostgreSQL:
-
-```sql
-CREATE TABLE IF NOT EXISTS contactos (
-  id SERIAL PRIMARY KEY,
-  nombre TEXT,
-  empresa TEXT,
-  email TEXT,
-  telefono TEXT,
-  producto TEXT,
-  tipo TEXT,
-  mensaje TEXT,
-  origen TEXT,
-  fecha TIMESTAMPTZ
-);
-```
-
-> Si no querés usar PostgreSQL, eliminá el nodo **Registrar en PostgreSQL** del flujo en la interfaz de n8n y usá solo el email.
-
-### Probar el webhook
-
-Con n8n activo, desde PowerShell:
-
-```powershell
-Invoke-RestMethod -Method POST -Uri "http://localhost:5678/webhook/contacto" -ContentType "application/json" -Body '{"nombre":"Test","email":"test@test.com","producto":"Resma A4"}'
-```
-
-O desde el formulario del sitio en http://localhost:3000.
-
-> **Nota sobre CORS:** si el navegador bloquea el envío desde localhost:3000, podés ejecutar n8n con la variable `N8N_DEFAULT_BINARY_DATA_MODE` o bien agregar el header CORS permitido en el nodo Webhook. En la práctica, para desarrollo normal con navegador en el mismo equipo suele funcionar sin cambios.
+O directamente desde el formulario en http://localhost:3000.
 
 ## Scripts disponibles
 
@@ -120,11 +91,11 @@ O desde el formulario del sitio en http://localhost:3000.
 
 ```
 centerprint/
-├── n8n/workflows/centerprint-webhook.json   # Flujo exportado de n8n
 ├── public/images/products/                   # Fotos de productos (PNG y SVG)
 ├── scripts/generate-product-images.cjs       # Placeholder de imágenes
 └── src/
-    ├── app/                                  # Layout, página y estilos globales
+    ├── app/                                  # Layout, página, estilos globales
+    │   └── api/contacto/route.ts             # API Route: envía consultas por Resend
     ├── components/                           # Logo, Navbar, Hero, Catálogo,
     │                                         # Carrusel, Ficha, Mapa, Contacto, Footer
     └── data/                                 # products.json, site.ts, types.ts

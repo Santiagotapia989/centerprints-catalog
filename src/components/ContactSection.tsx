@@ -41,7 +41,7 @@ export default function ContactSection() {
     e.preventDefault();
     setEstado("enviando");
     try {
-      const respuesta = await fetch(SITE.webhookUrl, {
+      const respuesta = await fetch("/api/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -50,7 +50,7 @@ export default function ContactSection() {
           fecha: new Date().toISOString(),
         }),
       });
-      if (!respuesta.ok) throw new Error("webhook_err");
+      if (!respuesta.ok) throw new Error("enviar_err");
       setEstado("ok");
     } catch {
       setEstado("error");
