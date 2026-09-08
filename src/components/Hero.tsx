@@ -19,7 +19,7 @@ export default function Hero() {
 
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
           Venta mayorista y minorista con atención personalizada y envíos en el
-          día desde nuestro local en Av. Rivadavia.
+          día desde nuestro local en pleno centro.
         </p>
 
         <div className="mt-10 flex justify-center">

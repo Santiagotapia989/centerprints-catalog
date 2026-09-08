@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import { Check, MessageCircle, Sparkles } from "lucide-react";
 import type { Producto } from "@/data/types";
 import { whatsappLink } from "@/data/site";
+import { useCartStore } from "@/store/cart";
 
 function ComboPanel({ producto }: { producto: Producto }) {
   const items = producto.especificaciones
@@ -34,10 +38,21 @@ function ComboPanel({ producto }: { producto: Producto }) {
 }
 
 export default function ProductCard({ producto }: { producto: Producto }) {
+  const { addItem } = useCartStore();
+  const [quantity, setQuantity] = useState(1);
   const esCombo = producto.nombre.includes("Pack Higiene Comercial");
 
+  const basePrice = producto.price || producto.precio || 1500;
+  const totalPrice = basePrice * quantity;
+
+  const handleAddToCart = () => {
+    addItem(producto, quantity);
+  };
+
   return (
-    <article className="group relative flex w-64 shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-navy-600/50 bg-white shadow-sm transition-all duration-300 hover:border-accent-500/40 hover:shadow-xl hover:shadow-accent-500/10 sm:w-72">
+    <article
+      className="group relative flex w-64 shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-navy-600/50 bg-white shadow-sm transition-all duration-300 hover:border-accent-500/40 hover:shadow-xl hover:shadow-accent-500/10 sm:w-72"
+    >
       <div className="relative aspect-square overflow-hidden bg-paper-100">
         {esCombo ? (
           <ComboPanel producto={producto} />
@@ -61,18 +76,58 @@ export default function ProductCard({ producto }: { producto: Producto }) {
         <h4 className="text-sm font-semibold leading-snug text-navy-900">
           {producto.nombre}
         </h4>
-        <p className="max-w-full leading-relaxed text-mist-300 text-xs">
+
+        <p className="text-xs text-zinc-500">
+          ${basePrice.toLocaleString("es-AR")} c/u
+        </p>
+
+        <div className="flex items-center justify-center gap-2 mb-3">
+          <button
+            onClick={() => setQuantity((q: number) => Math.max(1, q - 1))}
+            className="rounded bg-zinc-200 px-2 py-1.5 text-xs font-medium text-zinc-700 transition-colors"
+            disabled={quantity <= 1}
+          >
+            -
+          </button>
+
+          <span className="text-zinc-600 font-medium w-8 text-center">
+            {quantity}
+          </span>
+
+          <button
+            onClick={() => setQuantity((q: number) => Math.min(50, q + 1))}
+            className="rounded bg-zinc-200 px-2 py-1.5 text-xs font-medium text-zinc-700 transition-colors"
+          >
+            +
+          </button>
+        </div>
+
+        <p className="text-sm font-bold text-zinc-900 mb-3">
+          Total: ${totalPrice.toLocaleString("es-AR")}
+        </p>
+
+        <p className="max-w-full leading-relaxed text-mist-300 text-xs mb-4">
           {producto.especificaciones}
         </p>
-        <a
-          href={whatsappLink(producto.nombre)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-500 px-3 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-emerald-400"
-        >
-          <MessageCircle className="h-4 w-4" />
-          Consultar por WhatsApp
-        </a>
+
+        <div className="flex gap-2 w-full">
+          <button
+            onClick={handleAddToCart}
+            className="flex-1 rounded-lg bg-slate-800 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-700"
+          >
+            Agregar al carrito
+          </button>
+
+          <a
+            href={whatsappLink(producto.nombre)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 rounded-lg bg-[#059669] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#047857] flex items-center justify-center gap-1"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Consultar por WhatsApp
+          </a>
+        </div>
       </div>
     </article>
   );
