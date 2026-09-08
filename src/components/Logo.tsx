@@ -15,14 +15,22 @@ const medidas = {
   },
 };
 
+const tema = {
+  dark: { nombre: "text-white", tagline: "text-accent-300" },
+  light: { nombre: "text-navy-950", tagline: "text-accent-600" },
+};
+
 export default function Logo({
   compact = false,
   size = "md",
+  theme = "dark",
 }: {
   compact?: boolean;
   size?: keyof typeof medidas;
+  theme?: keyof typeof tema;
 }) {
   const m = medidas[size];
+  const t = tema[theme];
   return (
     <span className="flex items-center gap-3">
       <span
@@ -36,13 +44,13 @@ export default function Logo({
         />
       </span>
       <span className="leading-tight">
-        <span className={`block font-bold text-white ${m.nombre}`}>
+        <span className={`block font-bold ${t.nombre} ${m.nombre}`}>
           {SITE.nombre}
         </span>
         <span
-          className={`block font-semibold uppercase tracking-[0.18em] text-accent-300 ${
-            compact ? "text-[9px]" : m.tagline
-          }`}
+          className={`block font-semibold uppercase tracking-[0.18em] ${
+            t.tagline
+          } ${compact ? "text-[9px]" : m.tagline}`}
         >
           {SITE.tagline}
         </span>
