@@ -81,24 +81,32 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           ${basePrice.toLocaleString("es-AR")} c/u
         </p>
 
-        <div className="flex items-center justify-center gap-2 mb-3">
+        {/* Quantity selector - larger touch targets on mobile */}
+        <div className="flex items-center justify-center gap-3 mb-3">
           <button
             onClick={() => setQuantity((q: number) => Math.max(1, q - 1))}
-            className="rounded bg-zinc-200 px-2 py-1.5 text-xs font-medium text-zinc-700 transition-colors"
+            className="rounded-lg w-10 h-10 flex items-center justify-center bg-zinc-100 text-zinc-700 transition-colors hover:bg-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={quantity <= 1}
+            aria-label="Disminuir cantidad"
           >
-            -
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
           </button>
 
-          <span className="text-zinc-600 font-medium w-8 text-center">
+          <span className="text-zinc-600 font-medium w-10 text-center text-base">
             {quantity}
           </span>
 
           <button
             onClick={() => setQuantity((q: number) => Math.min(50, q + 1))}
-            className="rounded bg-zinc-200 px-2 py-1.5 text-xs font-medium text-zinc-700 transition-colors"
+            className="rounded-lg w-10 h-10 flex items-center justify-center bg-zinc-100 text-zinc-700 transition-colors hover:bg-zinc-200"
+            aria-label="Aumentar cantidad"
           >
-            +
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
           </button>
         </div>
 
@@ -110,10 +118,11 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           {producto.especificaciones}
         </p>
 
-        <div className="flex gap-2 w-full">
+        {/* Buttons - stacked on mobile, side by side on desktop */}
+        <div className="flex flex-col sm:flex-row gap-2 w-full">
           <button
             onClick={handleAddToCart}
-            className="flex-1 rounded-lg bg-slate-800 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-700"
+            className="flex-1 rounded-lg bg-slate-800 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-700 active:bg-slate-900 min-h-[48px]"
           >
             Agregar al carrito
           </button>
@@ -122,7 +131,7 @@ export default function ProductCard({ producto }: { producto: Producto }) {
             href={whatsappLink(producto.nombre)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 rounded-lg bg-[#059669] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#047857] flex items-center justify-center gap-1"
+            className="flex-1 rounded-lg bg-[#059669] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#047857] active:bg-[#065f46] flex items-center justify-center gap-1 min-h-[48px]"
           >
             <MessageCircle className="h-4 w-4" />
             Consultar por WhatsApp

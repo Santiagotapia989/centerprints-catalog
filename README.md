@@ -1,102 +1,125 @@
-# Center Print's S.R.L. — Sitio Web Interactivo
+# Center Print's S.R.L. — Sitio Web Corporativo
 
-Aplicación web corporativa para **Center Print's S.R.L. – Librería Comercial, Escolar e Insumos para Empresas**, construida con **Next.js (App Router) + TypeScript + Tailwind CSS + Lucide Icons**.
+Sitio web corporativo para **Center Print's S.R.L. – Librería Comercial, Escolar e Insumos para Empresas**, desarrollado con **Next.js 14 (App Router) + TypeScript + Tailwind CSS + Lucide Icons**.
 
-Incluye:
+---
 
-- Header con isotipo y logotipo original.
-- Hero con imagen de fondo y overlay oscuro.
-- Catálogo dinámico con carruseles deslizables por categoría, alimentado por `src/data/products.json`.
-- Botón "Consultar por WhatsApp" por producto con mensaje precargado.
-- Mapa interactivo de Google Maps (Av. Rivadavia 938, CABA).
-- Formulario de contacto/presupuesto que envía un `POST` a `/api/contacto`, el cual dispara un email vía **Resend** (`src/app/api/contacto/route.ts`).
+## Características
 
-## Requisitos
+- **Catálogo dinámico** con carruseles deslizables por categoría, alimentado por `src/data/products.json`
+- **Carrito de compras** lateral (Side Drawer) con persistencia en `localStorage`
+- **Checkout con Mercado Pago** – API Route `/api/checkout` que genera preferencias de pago y redirige al checkout oficial
+- **Formulario de contacto/presupuesto** con envío vía **Resend** (`/api/contacto`)
+- **Botones WhatsApp** con mensaje precargado por producto y consulta general
+- **Mapa interactivo** de Google Maps (Centro, CABA)
+- **Diseño responsive** mobile-first con drawer full-width en móviles y carrusel horizontal en escritorio
+- **Persistencia de carrito** en `localStorage` con Zustand
 
-- **Node.js 20+** (probado con Node 24) y npm.
-- Una cuenta en [Resend](https://resend.com) con una **API key**.
+---
 
-## Puesta en marcha desde PowerShell
+## Stack Tecnológico
 
-Abrí PowerShell en la carpeta del proyecto y ejecutá:
+| Capa | Tecnología |
+|------|------------|
+| Framework | Next.js 14 (App Router) |
+| Lenguaje | TypeScript |
+| Estilos | Tailwind CSS |
+| Iconos | Lucide React |
+| Estado | Zustand + persist (localStorage) |
+| Pagos | Mercado Pago SDK |
+| Email | Resend |
+| Imágenes | Next.js Image / Static assets |
 
-```powershell
-npm install
-npm run dev
+---
+
+## Estructura del Proyecto
+
+```
+centerprint/
+├── public/
+│   ├── images/products/          # Fotos de productos (PNG)
+│   ├── logo.png
+│   └── icono.png
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── checkout/route.ts     # Mercado Pago preference
+│   │   │   └── contacto/route.ts     # Email via Resend
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
+│   ├── components/
+│   │   ├── CartDrawer.tsx           # Side Drawer + Checkout
+│   │   ├── ProductCard.tsx          # Tarjeta con selector cantidad
+│   │   ├── ProductCarousel.tsx      # Grid mobile / Carousel desktop
+│   │   ├── Navbar.tsx               # Header + Cart + Mobile menu
+│   │   ├── Hero.tsx / HeroBenefits.tsx
+│   │   ├── Catalog.tsx / ProductCarousel.tsx
+│   │   ├── Footer.tsx / ContactSection.tsx
+│   │   └── ...
+│   ├── data/
+│   │   ├── products.json            # Catálogo completo
+│   │   ├── site.ts                  # Config + WhatsApp link
+│   │   └── types.ts
+│   └── store/
+│       └── cart.ts                  # Zustand store + persist
+├── .env.local                       # Variables de entorno (no commiteado)
+├── .gitignore
+└── package.json
 ```
 
-Después abrí en el navegador: **http://localhost:3000**
+---
 
-## Configuración rápida
+## Variables de Entorno
 
-Todos los datos de contacto se centralizan en `src/data/site.ts`:
-
-| Constante | Descripción |
-| --- | --- |
-| `whatsappNumero` | Numero de WhatsApp con código de país, ej. `"54911xxxxxxxx"`. Sin el `+`. |
-| `heroImagen` | URL de la imagen de fondo del Hero. |
-
-> **Importante:** reemplazá `whatsappNumero` por el número real para que los botones de WhatsApp funcionen.
-
-### Catálogo y fotos de productos
-
-- El catálogo se edita en `src/data/products.json` (agregar/quitar categorías y productos sin tocar código).
-- Las imágenes se sirven desde `public/images/products/` y provienen de `capturas/` y `capturas/procesadas/` (fotos recortadas y capturas de los productos). Solo se muestran ítems con fotografía real; si un producto no tiene PNG en las capturas, se elimina del catálogo. `scripts/generate-product-images.cjs` queda disponible para futuros placeholders neutros.
-- El logo va en `public/logo.png` y el favicon en `public/icono.png` (referenciados desde `src/components/Logo.tsx` y `src/app/layout.tsx`).
-- Para regenerar solo los placeholders: `npm run generate:images`.
-
-## Formulario de contacto — Resend
-
-El formulario del frontend (`src/components/ContactSection.tsx`) hace un `POST` a `/api/contacto`. La API Route lee los datos, los valida y envía un email con **Resend** al destinatario configurado (por defecto `sbazan@fie.undef.edu.ar`).
-
-### Variables de entorno
-
-Creá un archivo `.env.local` en la raíz del proyecto:
+Crea `.env.local` en la raíz:
 
 ```env
+# Mercado Pago
+MP_ACCESS_TOKEN=APP_USR-xxxxxxxxxxxx
+
+# WhatsApp (para desarrollo local usa tu número real)
+NEXT_PUBLIC_WHATSAPP_NUMBER=54911xxxxxxxxx
+
+# Resend (emails de contacto)
 RESEND_API_KEY=re_xxxxxxxxxxxx
 EMAIL_FROM=onboarding@resend.dev
 ```
 
-| Variable | Descripción |
-| --- | --- |
-| `RESEND_API_KEY` | **Obligatoria.** API key generada en el dashboard de Resend (Settings → API Keys). |
-| `EMAIL_FROM` | Remitente del email. En modo prueba usá `onboarding@resend.dev`. Con un dominio verificado usá algo como `consultas@tudominio.com.ar`. |
+> **Nota:** En producción (Vercel), configura estas variables en *Project → Settings → Environment Variables* para todos los entornos.
 
-En **Vercel**: Project → Settings → Environment Variables, agregá ambas variables (para Production, Preview y Development).
+---
 
-> **Importante:** con `onboarding@resend.dev` los emails solo pueden llegar a la dirección con la que creaste la cuenta de Resend. Para enviar a otros destinatarios y que tenga pinta profesional tenés que verificar tu dominio en Resend y cambiar `EMAIL_FROM`.
+## Catálogo de Productos
 
-### Probar el envío
+El catálogo se gestiona íntegramente en `src/data/products.json` sin tocar código:
 
-Con el servidor de desarrollo activo, desde PowerShell:
+- Categorías con icono, título, descripción y lista de productos
+- Cada producto: `id`, `marca`, `nombre`, `especificaciones`, `imagen`, `precio`
+- Las imágenes se sirven desde `public/images/products/` (formato PNG)
 
-```powershell
-Invoke-RestMethod -Method POST -Uri "http://localhost:3000/api/contacto" -ContentType "application/json" -Body '{"nombre":"Juan Pérez","email":"juan@test.com","telefono":"11 1234 5678","producto":"Resma Ledesma Autor 80g A4","mensaje":"Hola, quisiera un presupuesto."}'
-```
+---
 
-O directamente desde el formulario en http://localhost:3000.
+## Flujo de Compra
 
-## Scripts disponibles
+1. Usuario selecciona cantidad en la tarjeta del producto
+2. Clic en **"Agregar al carrito"** → abre *CartDrawer* lateral
+3. Revisa items, ajusta cantidades, clic **"Continuar a datos de envío"**
+4. Completa formulario: Nombre, Teléfono, Método (Retiro / Envío)
+5. Clic **"Pagar con Mercado Pago"** → `POST /api/checkout` → redirección a `init_point` de Mercado Pago
 
-| Comando | Descripción |
-| --- | --- |
-| `npm run dev` | Servidor de desarrollo (http://localhost:3000) |
-| `npm run build` | Build de producción |
-| `npm start` | Servir el build de producción |
-| `npm run lint` | Linter ESLint |
-| `npm run generate:images` | Regenerar imágenes placeholder del catálogo |
+---
 
-## Estructura del proyecto
+## Despliegue
 
-```
-centerprint/
-├── public/images/products/                   # Fotos de productos (PNG y SVG)
-├── scripts/generate-product-images.cjs       # Placeholder de imágenes
-└── src/
-    ├── app/                                  # Layout, página, estilos globales
-    │   └── api/contacto/route.ts             # API Route: envía consultas por Resend
-    ├── components/                           # Logo, Navbar, Hero, Catálogo,
-    │                                         # Carrusel, Ficha, Mapa, Contacto, Footer
-    └── data/                                 # products.json, site.ts, types.ts
-```
+Optimizado para **Vercel**:
+
+1. Conecta el repositorio
+2. Configura variables de entorno en *Settings → Environment Variables*
+3. Deploy automático en cada push a `main`
+
+---
+
+## Licencia
+
+Proyecto privado – Center Print's S.R.L.

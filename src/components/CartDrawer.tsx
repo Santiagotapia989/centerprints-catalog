@@ -54,7 +54,7 @@ export const CartDrawer = () => {
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black/60 backdrop-blur-sm">
       <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-white text-zinc-900 shadow-2xl flex flex-col justify-between">
+        <div className="w-full md:max-w-md lg:w-[380px] bg-white text-zinc-900 shadow-2xl flex flex-col justify-between">
           
           {/* Header */}
           <div className="p-6 border-b border-zinc-200 flex items-center justify-between">
@@ -105,20 +105,23 @@ export const CartDrawer = () => {
                             onClick={() =>
                               updateQuantity(item.id, item.quantity - 1)
                             }
-                            className="p-1 border rounded bg-white hover:bg-zinc-100 text-zinc-800"
+                            className="rounded-lg w-10 h-10 flex items-center justify-center bg-zinc-100 text-zinc-700 transition-colors hover:bg-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={item.quantity <= 1}
+                            aria-label="Disminuir cantidad"
                           >
-                            <Minus className="w-3 h-3"/>
+                            <Minus className="w-4 h-4"/>
                           </button>
-                          <span className="text-xs font-bold w-6 text-center">
+                          <span className="text-xs font-bold w-8 text-center">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() =>
                               updateQuantity(item.id, item.quantity + 1)
                             }
-                            className="p-1 border rounded bg-white hover:bg-zinc-100 text-zinc-800"
+                            className="rounded-lg w-10 h-10 flex items-center justify-center bg-zinc-100 text-zinc-700 transition-colors hover:bg-zinc-200"
+                            aria-label="Aumentar cantidad"
                           >
-                            <Plus className="w-3 h-3"/>
+                            <Plus className="w-4 h-4"/>
                           </button>
                         </div>
                       </div>
@@ -150,8 +153,9 @@ export const CartDrawer = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, nombre: e.target.value })
                     }
-                    className="w-full p-2 border border-zinc-300 rounded text-sm bg-white text-zinc-900"
+                    className="w-full p-3 border border-zinc-300 rounded text-base bg-white text-zinc-900"
                     placeholder="Ej: Juan Pérez"
+                    autoComplete="name"
                   />
                 </div>
 
@@ -166,8 +170,9 @@ export const CartDrawer = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, telefono: e.target.value })
                     }
-                    className="w-full p-2 border border-zinc-300 rounded text-sm bg-white text-zinc-900"
-                    placeholder="Ej: 1122334455"
+                    className="w-full p-3 border border-zinc-300 rounded text-base bg-white text-zinc-900"
+                    placeholder="Ej: 1126485586"
+                    autoComplete="tel"
                   />
                 </div>
 
@@ -181,7 +186,7 @@ export const CartDrawer = () => {
                       onClick={() =>
                         setFormData({ ...formData, metodoEntrega: "retiro" })
                       }
-                      className={`p-2 border text-xs rounded text-center font-medium ${
+                      className={`p-3 border text-sm rounded text-center font-medium ${
                         formData.metodoEntrega === "retiro"
                           ? "border-zinc-900 bg-zinc-900 text-white"
                           : "border-zinc-200 bg-white text-zinc-700"
@@ -194,7 +199,7 @@ export const CartDrawer = () => {
                       onClick={() =>
                         setFormData({ ...formData, metodoEntrega: "envio" })
                       }
-                      className={`p-2 border text-xs rounded text-center font-medium ${
+                      className={`p-3 border text-sm rounded text-center font-medium ${
                         formData.metodoEntrega === "envio"
                           ? "border-zinc-900 bg-zinc-900 text-white"
                           : "border-zinc-200 bg-white text-zinc-700"
@@ -218,8 +223,9 @@ export const CartDrawer = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, direccion: e.target.value })
                         }
-                        className="w-full p-2 border border-zinc-300 rounded text-sm bg-white text-zinc-900"
+                        className="w-full p-3 border border-zinc-300 rounded text-base bg-white text-zinc-900"
                         placeholder="Calle, Número, Piso"
+                        autoComplete="street-address"
                       />
                     </div>
                     <div>
@@ -233,7 +239,8 @@ export const CartDrawer = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, localidad: e.target.value })
                         }
-                        className="w-full p-2 border border-zinc-300 rounded text-sm bg-white text-zinc-900"
+                        className="w-full p-3 border border-zinc-300 rounded text-base bg-white text-zinc-900"
+                        autoComplete="address-level2"
                       />
                     </div>
                   </>
@@ -255,7 +262,7 @@ export const CartDrawer = () => {
               {view === "cart" ? (
                 <button
                   onClick={() => setView("checkout")}
-                  className="w-full bg-zinc-900 hover:bg-zinc-800 text-white py-3 rounded-lg font-bold text-sm transition-colors"
+                  className="w-full bg-zinc-900 hover:bg-zinc-800 text-white py-4 rounded-lg font-bold text-sm transition-colors min-h-[52px]"
                 >
                   Continuar a datos de envío
                 </button>
@@ -264,7 +271,7 @@ export const CartDrawer = () => {
                   <button
                     type="button"
                     onClick={() => setView("cart")}
-                    className="w-1/3 border border-zinc-300 hover:bg-zinc-100 text-zinc-700 py-3 rounded-lg font-semibold text-sm transition-colors"
+                    className="w-1/3 border border-zinc-300 hover:bg-zinc-100 text-zinc-700 py-3 rounded-lg font-semibold text-sm transition-colors min-h-[52px]"
                   >
                     Volver
                   </button>
@@ -272,7 +279,7 @@ export const CartDrawer = () => {
                     form="checkout-form"
                     type="submit"
                     disabled={isPaying}
-                    className="w-2/3 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold text-sm transition-colors disabled:opacity-50"
+                    className="w-2/3 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-bold text-sm transition-colors disabled:opacity-50 min-h-[52px]"
                   >
                     {isPaying ? "Procesando..." : "Pagar con Mercado Pago"}
                   </button>
